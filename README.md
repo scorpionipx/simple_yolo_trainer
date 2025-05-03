@@ -69,3 +69,41 @@ This will output:
 - The name of the GPU being used
 
 💡 Note: This does not start training — it just checks your PyTorch+CUDA setup (by default train_model method is commented out).
+
+
+
+### 6. Add your dataset into project
+![image](https://github.com/user-attachments/assets/24153c5b-dc8a-4ece-bcb6-ee20d332606a)
+Split your dataset into 2 folders: train (80%) and val(20%)
+✅ Tip: your dataset should contain the training images and their annotations files.
+
+### 7. Create (if not already existing) data.yaml file (example provided)
+- specify training and validation directories (absolute or relative paths)
+- specify number of classes
+- specify classes list
+
+
+### 8. Train your model
+Uncomment train_model() method in main.
+Adjust parameters if needed.
+Set your dataset_directory.
+Change YOLO model, if required.
+
+```bash
+python simple_yolo_trainer/core.py
+```
+
+### 9. Test you model
+After training your model, a **runs** folder will be created. 
+Find your **weights/best.pt** model and load it into test_model.py.
+Specify your test data (images).
+Run test_model.py.
+
+
+```bash
+python simple_yolo_trainer/test_model.py
+```
+
+
+
+Every step can be followed with the already provided dataset and yaml examples.
