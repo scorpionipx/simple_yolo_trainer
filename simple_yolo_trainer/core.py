@@ -59,4 +59,4 @@ if __name__ == '__main__':
     pass
     """
     self_test()
-    train_model()
+    # train_model()
