@@ -5,7 +5,7 @@ from ultralytics import YOLO
 
 
 ROOT = Path(__file__).parent.parent
-print(ROOT)
+DATASETS = ROOT.joinpath('datasets/yolo')
 
 
 MODEL_YOLOV8N = 'yolov8n'
@@ -23,7 +23,7 @@ def train_model():
     :return:
     """
 
-    dataset_directory = Path(r'C:\Users\ScorpionIPX\PycharmProjects\cp_ai\datasets\yolo\buttons_detection\v3')
+    dataset_directory = DATASETS.joinpath('example')
     data_yaml = dataset_directory.joinpath('data.yaml')
 
     # Load a pre-trained YOLO model (YOLOv8n is lightweight; you can use 'yolov8s.pt_old' for larger models)
@@ -59,4 +59,4 @@ if __name__ == '__main__':
     pass
     """
     self_test()
-    # train_model()
+    train_model()

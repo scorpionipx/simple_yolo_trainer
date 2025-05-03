@@ -1,0 +1,5 @@
+train: train/  # Path to training images
+val: val/      # Path to validation images
+
+nc: 1                                # Number of classes (1 for 'button')
+names: ['acne']                    # Class names
