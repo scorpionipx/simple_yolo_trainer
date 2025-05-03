@@ -4,12 +4,16 @@ from pathlib import Path
 from ultralytics import YOLO
 
 
-MODEL_YOLOV8N = 'yolov8n'  # requires RTX3090 or better
-MODEL_YOLOV8S = 'yolov8s'  # requires RTX3090 or better
-MODEL_YOLOV10M = 'yolov10m'  # requires RTX3090 or better
-MODEL_YOLOV8X = 'yolov8x'  # requires RTX3090 or better
-MODEL_YOLOV8X_SEG = 'yolov8n-seg'  # requires RTX3090 or better
-TRAINING_RESOLUTION = 800
+ROOT = Path(__file__).parent.parent
+print(ROOT)
+
+
+MODEL_YOLOV8N = 'yolov8n'
+MODEL_YOLOV8S = 'yolov8s'
+MODEL_YOLOV10M = 'yolov10m'
+MODEL_YOLOV8X = 'yolov8x'
+MODEL_YOLOV8X_SEG = 'yolov8n-seg'
+TRAINING_IMGSZ = 640
 TRAINING_EPOCHS = 500
 
 
@@ -26,7 +30,8 @@ def train_model():
     model = YOLO(MODEL_YOLOV10M)
 
     # Train the model
-    model.train(data=data_yaml, epochs=TRAINING_EPOCHS, imgsz=TRAINING_RESOLUTION, device=0, task='detect',)
+    # Change device according to your needs. Device = 0 -> it should use your GPU. to use CPU, set device as 'cpu'
+    model.train(data=data_yaml, epochs=TRAINING_EPOCHS, imgsz=TRAINING_IMGSZ, device=0, task='detect',)
     # print(model.device)
 
     # Validate the model
