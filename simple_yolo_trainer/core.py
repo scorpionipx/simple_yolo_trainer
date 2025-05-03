@@ -1,0 +1,57 @@
+import torch
+
+from pathlib import Path
+from ultralytics import YOLO
+
+
+MODEL_YOLOV8N = 'yolov8n'  # requires RTX3090 or better
+MODEL_YOLOV8S = 'yolov8s'  # requires RTX3090 or better
+MODEL_YOLOV10M = 'yolov10m'  # requires RTX3090 or better
+MODEL_YOLOV8X = 'yolov8x'  # requires RTX3090 or better
+MODEL_YOLOV8X_SEG = 'yolov8n-seg'  # requires RTX3090 or better
+TRAINING_RESOLUTION = 800
+TRAINING_EPOCHS = 500
+
+
+def train_model():
+    """
+    train_model
+    :return:
+    """
+
+    dataset_directory = Path(r'C:\Users\ScorpionIPX\PycharmProjects\cp_ai\datasets\yolo\buttons_detection\v3')
+    data_yaml = dataset_directory.joinpath('data.yaml')
+
+    # Load a pre-trained YOLO model (YOLOv8n is lightweight; you can use 'yolov8s.pt_old' for larger models)
+    model = YOLO(MODEL_YOLOV10M)
+
+    # Train the model
+    model.train(data=data_yaml, epochs=TRAINING_EPOCHS, imgsz=TRAINING_RESOLUTION, device=0, task='detect',)
+    # print(model.device)
+
+    # Validate the model
+    results = model.val()
+
+    # Save the best model
+    model.export()  # Export for deployment if needed
+
+
+def self_test():
+    """
+    self_test
+    :return:
+    """
+    cuda_version = torch.version.cuda  # Shows the CUDA version PyTorch is using
+    print(f'{cuda_version=}')
+    cuda_available = torch.cuda.is_available()  # Should return True
+    print(f'{cuda_available=}')
+    device = torch.cuda.get_device_name(0)  # Should print the name of your GPU
+    print(f'{device=}')
+
+
+if __name__ == '__main__':
+    """
+    pass
+    """
+    self_test()
+    # train_model()
