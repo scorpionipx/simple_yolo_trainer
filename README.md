@@ -20,7 +20,7 @@ Git: For cloning the repository
 
 
 ## 📦 Installation
-
+All commands can be ran in cmdline.
 Follow the steps below to set up your environment and get started:
 
 ### 1. Clone the repository
@@ -44,13 +44,15 @@ python -m virtualenv .venv
 ### 3. Activate the environment
 
 ```cmd
-.\venv\Scripts\activate
+.venv\Scripts\activate
 ```
 
 ### 4. Install required packages
 Once the virtual environment is activated, install all necessary Python dependencies using:
 
+```cmd
 pip install -r requirements.txt
+```
 This will ensure all required libraries (e.g., PyTorch, OpenCV, Ultralytics YOLO, etc.) are properly installed for training and evaluation.
 
 ✅ Tip: If you encounter any CUDA-related issues, verify your torch and torchvision versions are compatible with your installed CUDA version. You can check available options at https://pytorch.org/get-started/locally
