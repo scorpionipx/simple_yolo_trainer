@@ -46,3 +46,26 @@ python -m virtualenv .venv
 ```cmd
 .\venv\Scripts\activate
 ```
+
+### 4. Install required packages
+Once the virtual environment is activated, install all necessary Python dependencies using:
+
+pip install -r requirements.txt
+This will ensure all required libraries (e.g., PyTorch, OpenCV, Ultralytics YOLO, etc.) are properly installed for training and evaluation.
+
+✅ Tip: If you encounter any CUDA-related issues, verify your torch and torchvision versions are compatible with your installed CUDA version. You can check available options at https://pytorch.org/get-started/locally
+
+
+### 5. Verify CUDA setup (optional but recommended)
+To ensure your environment and GPU setup are working correctly, run the built-in self-test:
+
+```bash
+python simple_yolo_trainer/core.py
+```
+
+This will output:
+- Your CUDA version
+- Whether CUDA is available
+- The name of the GPU being used
+
+💡 Note: This does not start training — it just checks your PyTorch+CUDA setup (by default train_model method is commented out).
